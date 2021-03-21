@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>钻进过程智能监控云平台</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="js/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/mycss/mystyle-4.css" rel="stylesheet">
+  <link href="css/switch/jianlisw.css" rel="stylesheet">
+  <link href="css/switch/public.css" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome/font-awesome-4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row text-center Top-1" style=" padding: 10px 0 10px 0;font-size:24px;">
+      <span>实时曲线</span><br>
+    </div>
+
+
+    <div class="row text-center pingmu" style="overflow-x: auto; overflow-y: auto; height: 600px; width:400px;">
+      <!-- 这是加了这两个图表 -->
+      <div>
+        <div id="real_curve_1_1" style="min-width: 400px; height: 300px; margin: 0 auto;margin-top: 5px;"></div>
+        <div id="real_curve_1_2" style="min-width: 400px; height: 300px; margin: 0 auto"></div>
+      </div>
+
+      <div>
+        <div id="real_curve_2_1" style="min-width: 400px; height: 300px; margin: 0 auto;margin-top: 5px;"></div>
+        <div id="real_curve_2_2" style="min-width: 400px; height: 300px; margin: 0 auto"></div>
+      </div>
+
+      <div>
+        <div id="real_curve_3_1" style="min-width: 400px; height: 300px; margin: 0 auto;margin-top: 5px;"></div>
+        <div id="real_curve_3_2" style="min-width: 400px; height: 300px; margin: 0 auto"></div>
+      </div>
+
+    </div>
+
+
+    <div class="row" style="margin-top: 30px;">
+      <table id="query_data" class="table table-striped">
+        <thead>
+          <tr class="text-center" style="background-color:#54CFD4; color: #FFFFFF;">
+            <th style="padding-left: 10px;">
+              井深
+            </th>
+            <th>
+              钻位
+            </th>
+            <th>
+              钻压
+            </th>
+            <th>
+              钩载
+            </th>
+            <th>
+              钻速
+            </th>
+            <th>
+              扭矩
+            </th>
+            <th>
+              转速
+            </th>
+            <th>
+              立压
+            </th>
+          </tr>
+        </thead>
+      </table>
+      <div class="scrollBody">
+        <ul id="ul_1">
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+        </ul>
+        <ul id="ul_2">
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+        </ul>
+        <ul id="ul_3">
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+        </ul>
+        <ul id="ul_4">
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+        </ul>
+        <ul id="ul_5">
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+        </ul>
+        <ul id="ul_6">
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+          <li>A</li>
+          <li>a</li>
+        </ul>
+
+      </div>
+    </div>
+
+
+    <div class="row text-center" style="position:fixed;bottom:0;left: 0;right: 0;background-color: #EDEDED;">
+
+      <ul class="bottom-1">
+        <div class="col-xs-3" style="padding:0;">
+          <li><a href="index.html"><i class="fa fa-wrench"></i><br>井场选择</a></li>
+        </div>
+
+        <div class="col-xs-3" style="padding:0;">
+          <li><a href="index-1.html"><i class="fa fa-database"></i><br>实时数据</a></li>
+        </div>
+
+        <div class="col-xs-3" style="padding:0;">
+          <li><a href="index-2.html"><i class="fa fa-area-chart"></i><br>实时曲线</a></li>
+        </div>
+
+        <div class="col-xs-3" style="padding:0;">
+          <li><a href="index-3.html"><i class="fa fa-line-chart"></i><br>历史曲线</a></li>
+        </div>
+
+
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- 绘制实时曲线 -->
+  <script src="js/highchart/highcharts.js"></script>
+  <script src="js/highchart/create-curve1.js"></script>
+
+
+
+
+  <!-- 表格滚动 -->
+  <script>
+    function TimeControl() {
+      $(".message_scroll_box").animate({
+        marginTop: 96
+      }, 800,
+        function () {
+          $(".message_scroll_box").css({
+            marginTop: 0
+          }); //把顶部的边界清零
+          $(".message_scroll_box .message_scroll:first").before($(".message_scroll_box .message_scroll:last")); //在第一个新闻后面插入最后一个新闻
+
+        });
+    }
+    var T = setInterval(TimeControl, 2300); //开始定时
+    $(".message_scroll_box").mouseenter(function () {
+      clearInterval(T); //停止定时
+    })
+      .mouseleave(function () {
+        T = setInterval(TimeControl, 2500); //再次定时
+      })
+  </script>
+
+  <script>
+    function scroll(className) {
+      var uls = $("." + className + ">ul");
+      var interval = 1200;
+      var rowHeight = 40;
+      var curIndex = 0;
+      function playScroll() {
+        for (var i = 0; i < uls.length; i++) {
+          if (i < curIndex) {
+            uls.eq(i).stop(true).animate({ top: (i - curIndex - 1 + uls.length) * rowHeight + 'px' });
+          } else if (i > curIndex) {
+            uls.eq(i).stop(true).animate({ top: (i - curIndex - 1) * rowHeight + 'px' });
+          } else {
+            uls.eq(i).stop(true).animate({ top: -rowHeight }, function () {
+              $(this).css({ top: (uls.length - 1) * rowHeight + 'px' });
+            });
+          }
+        }
+        if (curIndex == uls.length - 1) {
+          curIndex = 0
+        } else {
+          curIndex++
+        }
+      }
+      timer = setInterval(playScroll, interval);
+      $('.' + className).mouseenter(function () {
+        clearInterval(timer);
+      }).mouseleave(function () {
+        timer = setInterval(playScroll, interval);
+      });
+    }
+    scroll('scrollBody')
+  </script>
+
+</body>
+
+</html>

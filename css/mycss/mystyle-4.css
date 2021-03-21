@@ -1,0 +1,95 @@
+/* *{margin:0px;padding: 0px;}
+html,body{height:100%;width:100%;position: relative;overflow: hidden;} */
+.scrollBody{height:280px;position: relative;overflow: hidden;}
+.scrollBody>ul{list-style: none;position: absolute;height: 40px;width: 100%;top: 160px;left: 0px;}
+.scrollBody>ul:nth-child(odd){background: #F5F5F5;}
+.scrollBody>ul:nth-child(even) {background: #D9EDF7;}
+.scrollBody>ul>li{height: 40px;width: 12.5%;float: left;text-align: center;line-height: 40px;}
+.scrollBody>ul:nth-child(1){top: 0;}
+.scrollBody>ul:nth-child(2){top: 40px;}
+.scrollBody>ul:nth-child(3){top: 80px;}
+.scrollBody>ul:nth-child(4){top: 120px;}
+.scrollBody>ul:nth-child(5){top: 160;}
+.scrollBody>ul:nth-child(6){top: 200;}
+
+ /* body{
+   
+    overflow:hidden;
+}   */
+
+
+
+  /*中间的过度的横线*/
+  .link-top {
+    width: 100%;
+    height: 1px;
+    border-top: solid #ACC0D8 1px;
+}
+
+/*画一条再右边的竖线*/
+.link-right {
+    width: 50px;
+    height: 20%;
+    border-right: solid #ACC0D8 1px;
+}
+
+.Top-1{
+  background-color: #54CFD4;
+  color: #FFFFFF;
+}
+
+/* 取消ul前面的小点 */
+ul{
+    list-style-type:none;
+}
+
+
+li{
+  float: left;
+  padding: 1rem;
+  list-style-type:none;
+  font-size: 16px;
+
+}
+
+.Top-1{
+    background-color: #54CFD4;
+    color: #FFFFFF;
+}
+
+.center-1{
+    font-size: 14px;
+    font-weight:600;
+    font-family:'Verdana';
+}
+
+
+.center-2{
+    font-size: 24px;
+    font-weight:800;
+    font-family: "Times new Roman";
+}
+
+
+.bottom-1 li{
+    padding-left: 10px;
+    width: 100px;
+ }
+
+#query_data th{
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    font-size: 18px;
+}
+
+
+.scrollBody ul{
+  padding: 0;
+}
+/* 屏幕检测 */
+@media screen and (min-width: 600px) and (max-width: 1280px) {
+  .pingmu {
+    overflow-x: auto; overflow-y: auto; height: 600px; width:800px;
+  }
+}

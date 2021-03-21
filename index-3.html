@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>钻进过程智能监控云平台</title>
+  <!-- 新 Bootstrap 核心 CSS 文件 -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="js/jquery.min.js"></script>
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/mycss/mystyle-5.css" rel="stylesheet">
+  <link rel="stylesheet" href="font-awesome/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link href="css/nouislider/nouislider.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="container" style="margin-top: 0px;">
+
+    <div class="row text-center  Top-1 ">
+      <span>历史曲线</span>
+    </div>
+    <div class="row">
+      <div class="col-xs-2" style="margin-top: 20px;">
+        <div style="margin-bottom:20px ; width: 50px;color: #FFFFFF;"><button
+            style="margin:10px 0 0 0px ;background-color:#54CFD4;" id="click_1" onclick="btn();">确定</button>
+        </div>
+        <div id="range">
+        </div>
+
+      </div>
+      <div class="col-xs-10">
+
+        <div id="historical_curve_1"
+          style="min-width: 330px; height: 500px; margin: 0 auto;margin-top: 5px;float: left;"></div>
+      </div>
+
+      <div class="row" style="margin-top:30px;width: 420px;">
+
+        <table id="query_data" class="table table-striped" style="margin-left:10px">
+          <thead>
+            <tr class="text-center" style="background-color:#54CFD4; color: #FFFFFF;">
+              <th>
+                井深
+              </th>
+              <th>
+                钻速
+              </th>
+              <th>
+                钻压
+              </th>
+              <th>
+                钩载
+              </th>
+              <th>
+                立压
+              </th>
+              <th>
+                扭矩
+              </th>
+              <th>
+                转速
+              </th>
+              <th>
+                钻位
+              </th>
+            </tr>
+          </thead>
+          <!-- <tfoot>
+              <tr>
+                <td colspan="10">
+                  <div class="pagination pagination-centered"></div>
+                </td>
+              </tr>
+            </tfoot> -->
+          <tbody>
+
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+
+
+  <div class="row text-center"
+    style="position:fixed;bottom:0;left: 0;right: 0;background-color: #EDEDED;margin-left: -40px;">
+
+    <ul class="bottom-1">
+      <div class="col-xs-3" style="padding:0;">
+        <li><a href="index.html"><i class="fa fa-wrench"></i><br>井场选择</a></li>
+      </div>
+
+      <div class="col-xs-3" style="padding:0;">
+        <li><a href="index-1.html"><i class="fa fa-database"></i><br>实时数据</a></li>
+      </div>
+
+      <div class="col-xs-3" style="padding:0;">
+        <li><a href="index-2.html"><i class="fa fa-area-chart"></i><br>实时曲线</a></li>
+      </div>
+
+      <div class="col-xs-3" style="padding:0;">
+        <li><a href="index-3.html"><i class="fa fa-line-chart"></i><br>历史曲线</a></li>
+      </div>
+
+    </ul>
+  </div>
+
+  </div>
+
+  </div>
+
+  </div>
+  <!-- 井深js -->
+  <script src='js/jingshen/index.js'></script>
+  <script src="js/jingshen/jquery-ui.min.js"></script>
+  <!-- 历史曲线 -->
+  <!-- <script src="js/highchart/highcharts.js"></script> -->
+  <script src="js/highchart/highstock.js"></script>
+  <script src="js/highchart/creat-curve-4.js"></script>
+  <script src="js/nouislider/nouislider.min.js"></script>
+  <!-- <script src="js/highchart/creat-curve-2.js"></script> -->
+
+  <script>
+    var range = document.getElementById('range');
+
+    noUiSlider.create(range, {
+
+      range: {
+        'min': 0,
+        'max': 2400
+      },
+
+      step: 1,
+
+      // Handles start at ...
+      start: [0, 200],
+
+      // ... must be at least 300 apart
+      //margin: 300,
+
+      // ... but no more than 600
+      //limit: 600,
+
+      // Display colored bars between handles
+      connect: true,
+
+      // Put '0' at the bottom of the slider
+      direction: 'ltr',
+      orientation: 'vertical',
+
+      // Move handle on tap, bars are draggable
+      behaviour: 'drag-fixed',
+      tooltips: true,
+      /* format: wNumb({
+        decimals: 0
+      }), */
+
+      // Show a scale with the slider
+
+      pips: {
+        mode: 'values',
+        values: [0, 2500],
+        density: 4,
+        stepped: true
+      }
+    });
+
+    // Give the slider dimensions
+    range.style.height = '400px';
+    range.style.margin = '0 0 0 60px';
+
+
+    /*   document.getElementById('click_1').addEventListener('click', function () {
+        alert(range.noUiSlider.get());
+      }); */
+  </script>
+  <script>
+    btn = function () {
+      var well_text = range.noUiSlider.get();
+      alert(range.noUiSlider.get());
+
+      Historical_curve_1.series[0].setData(function () {
+        // generate an array of random data
+        var data = [],
+          time = (new Date()).getTime(),
+          i;
+
+        for (i = 0; i <= 100000; i += 1) {
+          data.push({
+            x: i,
+            y: i
+          });
+        }
+        return data;
+      }());
+
+      /*   if (1) {
+          for (var i = 0; i < 1000; i++) {
+            Historical_curve_1.series[0].addPoint([i, i]);
+          }
+        } */
+
+    } 
+  </script>
+
+  <script>
+    var domid;
+    function query() {
+      var starttime = $("#starttime").val();
+      var endtime = $("#endtime").val();
+      //去除时间中T
+      starttime = starttime.substring(0, 10) + " " + starttime.substring(11, 16);
+      endtime = endtime.substring(0, 10) + " " + endtime.substring(11, 16);
+
+      var inf = starttime + "," + endtime;
+
+      alert(Tervel);
+
+
+      $.ajax({
+        type: "get",
+        url: "/DrillingPlatform/drilling/api/vnew12/user/query1/" + inf + "T",
+        //url:"Json/4-2biaoge.json",
+        dataType: "json",
+        success: function (data) {
+          if (data.rows.length == 0) {
+            alert("当前时间范围不存在数据");
+          } else {
+
+
+            var queryData1 = " <table id=\"query_data\" class=\"table-striped footable-res footable metro-blue data-page-size=\"20\"\">\n" +
+              "                                    <thead>\n" +
+              "                                    <tr>\n" +
+              "                                        <th>\n" +
+              "                                            井深\n" +
+              "                                        </th>\n" +
+              "                                        <th>\n" +
+              "                                            钻速\n" +
+              "                                        </th>\n" +
+              "                                        <th>\n" +
+              "                                            钻压\n" +
+              "                                        </th >\n" +
+              "                                        <th>\n" +
+              "                                            钩载\n" +
+              "                                        </th >\n" +
+              "                                        <th>\n" +
+              "                                            立压\n" +
+              "                                        </th>\n" +
+              "                                        <th>\n" +
+              "                                            扭矩" +
+              "                                        </th>\n" +
+              "                                        <th>\n" +
+              "                                           转速" +
+              "                                        </th>\n" +
+              "                                        <th>\n" +
+              "                                           钻位\n" +
+              "                                        </th>\n" +
+              "                                    </tr>\n" +
+              "                                    </thead>\n" +
+              "\n" +
+              "                                    <tbody >";
+            var queryData2 = "";
+            for (var i = 0; i < data.rows.length; i++) {
+              queryData2 += "<tr> \n" +
+
+                "<td> " + data.rows[i].well_depth + "</td>\n" +
+                "<td> " + data.rows[i].bit_depth + "</td>\n" +
+                "<td> " + data.rows[i].wob + "</td>\n" +
+                "<td> " + data.rows[i].hook_load + "</td>\n" +
+                "<td> " + data.rows[i].rop + "</td>\n" +
+                "<td> " + data.rows[i].torque + "</td>\n" +
+                "<td> " + data.rows[i].rpm + "</td>\n" +
+                "<td> " + data.rows[i].spp + "</td>\n" +
+                "</tr> \n"
+            }
+            var queryData3 = ' </tbody>\n' +
+              '                                    <tfoot >\n' +
+              '                                    <tr>\n' +
+              '                                        <td colspan="10">\n' +
+              '                                            <div class="pagination pagination-centered"></div>\n' +
+              '                                        </td>\n' +
+              '                                    </tr>\n' +
+              '                                    </tfoot>\n' +
+              '                                </table>';
+            var queryData = queryData1 + queryData2 + queryData3;
+            var queryData1 = queryData1 + queryData2;
+            $("#query_data").html(queryData);
+            $("#query_data1").html(queryData1);
+            $('.footable-res').footable();
+          }
+
+        }
+
+      })
+    }
+  </script>
+</body>
+
+</html>

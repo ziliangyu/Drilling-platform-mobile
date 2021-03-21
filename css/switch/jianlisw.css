@@ -1,0 +1,22 @@
+/*项目概览*/
+.none{ display:none}
+.xmglan{ width:100%;color:rgb(255, 255, 255); padding:5px 0;}
+.xmgl_heard{ width:100%; display:block; overflow:hidden}
+.xmgl_heard li{ float:left; list-style:none; font-size:15px; height:26px; line-height:26px; text-align:center;background:#0068b7; width:33.33%; cursor:pointer; border-top:1px #032d60 solid;border-bottom:1px #032d60 solid}
+.xmgl_heard li.hove{ background:#0c2697}
+.xmgl_heard li.motor{ background:#0c2697}
+
+/*项目概览 */
+.xm_cszs{ font-size:12px; padding:10px 10px 0 10px; }
+.xm_cszs li { line-height:22px;overflow:hidden}
+.xm_cszs li span{ color:#00ff00; padding:0 5px 0 10px}
+.xm_cszs li p{ float:left;width:33%}
+.xm_cszs li p span{ color:#00ffff; padding:0}
+.xm_cszs li p cite{ color:#00ffff;}
+
+
+
+
+
+
+
